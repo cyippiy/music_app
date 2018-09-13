@@ -14,31 +14,26 @@ require "bcrypt"
 class User < ApplicationRecord
   validates :email, :password_digest, :session_token, presence: true
   validates :email, :session_token, uniqueness: true
-  validates :password, length{minimum: 8, allow_nil: true}
+  validates :password, length: {minimum: 8, allow_nil: true}
 
   after_initialize :ensure_session_token
 
   attr_reader :password
 
   def password=(pw)
+    @password = pw
     self.password_digest = BCrypt::Password.create(pw)
   end
 
   def self.generate_session_token
-    token = SecureRandom.urlsafe_base64(16)
-
-    while self.class.exists?(session_token: token)
-      token = SecureRandom.urlsafe_base64(16)
-    end
-
-    token
+    SecureRandom.urlsafe_base64(16)
   end
 
   def is_password?(pw)
     BCrypt::Password.new(self.password_digest).is_password?(pw)
   end
 
-  def find_by_credentials(email,pw)
+  def self.find_by_credentials(email,pw)
     user = User.find_by(email: email)
 
     return nil if user.nil?
@@ -51,8 +46,9 @@ class User < ApplicationRecord
   end
 
   def reset_session_token!
-    self.session_token = SecureRandom.urlsafe_base64
+    self.session_token = User.generate_session_token
     self.save!
     self.session_token
   end
+
 end
