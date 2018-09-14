@@ -1,0 +1,15 @@
+<h1>Make new band</h1>
+ <%= render "shared/errors" %>
+
+<form class="" action="<%= bands_url %>" method="post">
+  <%= auth_token %>
+  <p>
+  <label for="name">Name: </label>
+  <br>
+  <input type="text" name="band[name]" value="">
+  </p>
+
+  <p>
+  <input type="submit" value="Create">
+  </p>
+</form>

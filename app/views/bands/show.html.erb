@@ -1,0 +1,5 @@
+<h1 class='page-header'>User Profile</h1>
+<p>
+  Band: <%= Band.find(params[:id]).name %>
+  <a href="<%= edit_band_url(params[:id]) %> ">Edit</a>
+</p>

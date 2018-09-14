@@ -1,0 +1,16 @@
+<h1>Edit:</h1>
+ <%= render "shared/errors" %>
+
+<form class="" action="<%= band_url %>" method="post">
+  <input type="text" name="_method" value="patch">
+  <%= auth_token %>
+  <p>
+  <label for="name">Name: </label>
+  <br>
+  <input type="text" name="band[name]" value="<%=band[name]%>">
+  </p>
+
+  <p>
+  <input type="submit" value="Edit">
+  </p>
+</form>

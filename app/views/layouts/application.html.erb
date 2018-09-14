@@ -13,8 +13,8 @@
       <a href="<%= new_user_url  %>">Sign Up</a>
     <% else %>
       Welcome back, <%= current_user.email %>
-      <br><a href="<%= user_url  %>">Profile</a>
-      <form class="" action="<%= session_url %>" method="post">
+      <br><a href="<%= user_url(current_user.id)  %>">Profile</a>
+      <form class="" action="<%= session_url(current_user.id) %>" method="post">
         <input type="hidden" name="_method" value="delete">
         <%= auth_token %>
         <input type=submit value="Logout">

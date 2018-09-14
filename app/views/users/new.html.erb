@@ -1,14 +1,18 @@
 <h1>Sign up!</h1>
 
+<div class="main">
+</div>
 <form class="" action="<%= users_url  %>" method="post">
   <%= auth_token %>
   <p>
   <label for="email">Email: </label>
+  <br>
   <input type="text" name="user[email]" value="">
   </p>
 
   <p>
-  <label for="Password">Password: </label>
+  <label for="password">Password: </label>
+  <br>
   <input type="password" name="user[password]" value="">
   </p>
 
@@ -16,3 +20,4 @@
   <input type="submit" value="Create User">
   </p>
 </form>
+</div>
